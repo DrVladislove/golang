@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	a, _ := path.Split("secret/file.txt")
-	fmt.Println(a)
+	dir, _ := path.Split("secret/file.txt")
+	fmt.Println(dir)
 }
