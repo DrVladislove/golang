@@ -5,13 +5,10 @@ import (
 )
 
 func main() {
-	var(
-		perimeter int
+	var (
+		perimeter     int
 		width, height = 5, 6
 	)
-
-	perimeter = 2*width + 2*height
-
+	perimeter = 2 * (width + height)
 	fmt.Println(perimeter)
-
 }
