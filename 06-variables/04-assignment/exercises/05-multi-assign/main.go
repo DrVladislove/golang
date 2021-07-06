@@ -9,10 +9,7 @@ func main() {
 		lang    string
 		version int
 	)
-
 	lang = "go"
 	version = 2
-
 	fmt.Println(lang, "version", version)
-
 }

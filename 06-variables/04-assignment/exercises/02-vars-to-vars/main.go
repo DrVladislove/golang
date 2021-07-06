@@ -6,9 +6,6 @@ import (
 
 func main() {
 	color := "green"
-
 	color = "dark " + color
-
 	fmt.Println(color)
-
 }
