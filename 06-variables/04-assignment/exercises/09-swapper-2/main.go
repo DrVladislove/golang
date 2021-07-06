@@ -6,7 +6,6 @@ import (
 
 func main() {
 	red, blue := "red", "blue"
-
-	red, blue = "blue", "red"
+	red, blue = blue, red
 	fmt.Println(red, blue)
 }
