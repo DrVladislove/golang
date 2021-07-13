@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	fmt.Printf("I'm 19 years old.")
+	fmt.Printf("I'm %d years old.", 19)
 }
