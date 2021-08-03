@@ -17,9 +17,9 @@ func main() {
 
 	if username == "jack" && password == "1888" {
 		fmt.Printf("Access granted to %q. \n", username)
-	} else if username != "jack" && password != "1888" {
-		fmt.Printf("Access denied for %q. \n", username)
 	} else if username == "jack" && password != "1888" {
 		fmt.Printf("Invalid password for %q. \n", username)
+	} else {
+		fmt.Printf("Access denied for %q. \n", username)
 	}
 }
