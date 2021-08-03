@@ -16,6 +16,35 @@ const (
 	password2 = "1879"
 )
 
+type CheckAssessResult int
+
+const (
+	Allowed CheckAssessResult = 1 + iota
+	InvalidPassword
+	AccessDenied
+)
+
+func checkAccess(username, password string, desiredUsername, desiredPassword string) CheckAssessResult {
+	if username == desiredUsername && password == desiredPassword {
+		return Allowed
+	} else if password != desiredPassword {
+		return InvalidPassword
+	} else {
+		return AccessDenied
+	}
+}
+
+func printResult(result CheckAssessResult, username string) {
+
+	if result == Allowed {
+		fmt.Println(accessOK, username)
+	} else if result == InvalidPassword {
+		fmt.Println(errPwd, username)
+	} else {
+		fmt.Println(errUser, username)
+	}
+}
+
 func main() {
 	args := os.Args
 
@@ -26,13 +55,12 @@ func main() {
 
 	u, p := args[1], args[2]
 
-	if u != user && u != user2 {
-		fmt.Printf(errUser, u)
-	} else if p != pass && p != password2 {
-		fmt.Printf(errPwd, u)
-	} else if u == user && p == pass {
-		fmt.Printf(accessOK, u)
-	} else if u == user2 && p == password2 {
-		fmt.Printf(accessOK, u)
+	result := checkAccess(u, p, user, pass)
+	if result != AccessDenied {
+		printResult(result, u)
+		return
 	}
+
+	result = checkAccess(u, p, user2, password2)
+	printResult(result, u)
 }
