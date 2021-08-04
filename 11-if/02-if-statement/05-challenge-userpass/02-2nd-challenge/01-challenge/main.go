@@ -6,14 +6,14 @@ import (
 )
 
 const (
-	usage     = "Usage: [username] [password]"
-	errUser   = "Access denied for %q.\n"
-	errPwd    = "Invalid password for %q.\n"
-	accessOK  = "Access granted to %q.\n"
-	user      = "jack"
-	pass      = "1888"
-	user2     = "inanc"
-	password2 = "1879"
+	usage           = "Usage: [username] [password]"
+	errAccessDenied = "Access denied for %q.\n"
+	errPwd          = "Invalid password for %q.\n"
+	accessOK        = "Access granted to %q.\n"
+	user            = "jack"
+	pass            = "1888"
+	user2           = "inanc"
+	password2       = "1879"
 )
 
 type CheckAssessResult int
@@ -27,22 +27,22 @@ const (
 func checkAccess(username, password string, desiredUsername, desiredPassword string) CheckAssessResult {
 	if username == desiredUsername && password == desiredPassword {
 		return Allowed
-	} else if password != desiredPassword {
-		return InvalidPassword
-	} else {
-		return AccessDenied
 	}
+	if username == desiredUsername && password != desiredPassword {
+		return InvalidPassword
+	}
+	return AccessDenied
 }
 
 func printResult(result CheckAssessResult, username string) {
 
 	if result == Allowed {
 		fmt.Println(accessOK, username)
-	} else if result == InvalidPassword {
-		fmt.Println(errPwd, username)
-	} else {
-		fmt.Println(errUser, username)
 	}
+	if result == InvalidPassword {
+		fmt.Println(errPwd, username)
+	}
+	fmt.Println(errAccessDenied, username)
 }
 
 func main() {
